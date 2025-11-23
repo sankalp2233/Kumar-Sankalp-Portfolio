@@ -3,7 +3,7 @@ node_modules/
 server/node_modules/
 
 # Build outputs
-dist/
+
 build/
 .cache/
 
