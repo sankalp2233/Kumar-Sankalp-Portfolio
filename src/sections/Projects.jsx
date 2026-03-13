@@ -118,6 +118,14 @@ const Projects = () => {
 
                 <div className="flex gap-4">
                   <a
+                    href="https://cabnest-ai.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all transform hover:scale-105 border border-blue-500"
+                  >
+                    <FiExternalLink /> Live Demo
+                  </a>
+                  <a
                     href="https://github.com/sankalp2233"
                     target="_blank"
                     rel="noopener noreferrer"

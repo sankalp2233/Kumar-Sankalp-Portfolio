@@ -39,19 +39,23 @@ const Contact = () => {
       formDataToSend.append('from_name', 'Portfolio Contact Form');
       formDataToSend.append('subject', `New message from ${formData.name}`);
 
-      await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formDataToSend,
       });
 
-      setShowSuccess(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setShowSuccess(false), 5000);
+      const result = await response.json();
+
+      if (result.success) {
+        setShowSuccess(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setShowSuccess(false), 5000);
+      } else {
+        setStatus('Something went wrong. Please try again or email me directly.');
+      }
     } catch (error) {
       console.error('Error:', error);
-      setShowSuccess(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setShowSuccess(false), 5000);
+      setStatus('Failed to send message. Please try again or email me directly.');
     } finally {
       setLoading(false);
     }
@@ -205,7 +209,7 @@ const Contact = () => {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="p-4 bg-green-900/20 border border-green-500 rounded-lg text-green-400 text-sm"
+                    className="p-4 bg-red-900/20 border border-red-500 rounded-lg text-red-400 text-sm"
                   >
                     {status}
                   </motion.div>
